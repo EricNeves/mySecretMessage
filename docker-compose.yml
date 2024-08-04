@@ -1,0 +1,32 @@
+version: '3'
+services:
+  www:
+    build: 
+      context: ./www
+      dockerfile: Dockerfile
+    ports:
+      - 4000:80
+    volumes:
+      - ./www:/var/www/html
+    depends_on:
+      - db
+  db:
+    image: postgres:15.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hx_db
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./resources:/resources
+      - ./resources/sql/tables.sql:/docker-entrypoint-initdb.d/tables.sql
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass redis_password
+
+volumes:
+  db_data:
