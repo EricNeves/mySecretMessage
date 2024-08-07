@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 
-import { ButtonModule } from 'primeng/button';
-import { PasswordModule } from 'primeng/password';
+import { RouterModule } from '@angular/router';
+
+import { FormAuthenticationComponent } from '../../components/form-authentication/form-authentication.component';
 
 @Component({
   selector: 'app-page-authentication',
   standalone: true,
-  imports: [ButtonModule, PasswordModule],
+  imports: [FormAuthenticationComponent, RouterModule],
   templateUrl: './page-authentication.component.html',
   styleUrl: './page-authentication.component.css',
 })
