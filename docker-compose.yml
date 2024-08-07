@@ -27,6 +27,16 @@ services:
     ports:
       - 6379:6379
     command: redis-server --requirepass redis_password
+  web:
+    build: 
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - ./web:/app
+    depends_on:
+      - www  
 
 volumes:
   db_data:
