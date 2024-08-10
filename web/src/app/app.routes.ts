@@ -9,14 +9,17 @@ export const routes: Routes = [
   {
     path: '',
     component: PageAuthenticationComponent,
+    title: 'My Secret Message - Login',
   },
   {
     path: 'register',
     component: PageRegisterComponent,
+    title: 'My Secret Message - Register',
   },
   {
     path: 'panel',
     component: PagePanelComponent,
     canActivate: [authenticatedGuard],
+    title: 'My Secret Message - Panel',
   },
 ];

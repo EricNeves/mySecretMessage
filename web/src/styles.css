@@ -3,10 +3,39 @@
 @import "primeicons/primeicons.css";
 @import "primeflex/primeflex.css";
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #333333;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1e1e1e;
+  border-radius: 0.3rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
 .form {
   margin: 3rem auto;
 }
 
 .p-menubar {
   height: 3.5rem;
+}
+
+.p-inplace-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.p-inplace-content button {
+  margin-top: 0.5rem;
 }
