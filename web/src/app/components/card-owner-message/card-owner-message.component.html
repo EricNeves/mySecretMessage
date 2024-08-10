@@ -1,4 +1,4 @@
-<div class="card w-full lg:w-7 m-auto mt-6">
+<div class="card w-full lg:w-6 m-auto mt-6">
   <p-panel [toggleable]="true">
     <ng-template pTemplate="header">
       <div class="flex align-items-center gap-2">
@@ -9,13 +9,28 @@
       <div
         class="flex flex-wrap align-items-center justify-content-between gap-3"
       >
-        <div class="flex align-items-center gap-2">
+        <div class="flex align-items-center">
           <p-button
-            icon="pi pi-github"
-            severity="secondary"
+            icon="pi pi-link"
+            severity="success"
             rounded="true"
             text="true"
-            (onClick)="openGitHub()"
+            (onClick)="openSharedLink()"
+          />
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            rounded="true"
+            text="true"
+            (onClick)="confirmDelete($event)"
+          />
+
+          <p-button
+            icon="pi pi-github"
+            severity="contrast"
+            rounded="true"
+            text="true"
+            (onClick)="openGithubLink()"
           />
         </div>
         @if (message.message) {
@@ -69,3 +84,6 @@
 </div>
 
 <p-toast position="bottom-right"></p-toast>
+<p-confirmDialog />
+
+<app-modal-shared-link [display]="displayModalSharedMessage" [link]="sharedLink"></app-modal-shared-link>
