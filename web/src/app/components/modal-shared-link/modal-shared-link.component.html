@@ -1,0 +1,24 @@
+<p-dialog
+  [modal]="true"
+  [draggable]="false"
+  [(visible)]="display"
+  [style]="{ width: '30rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+  <ng-template pTemplate="header">
+    <div class="inline-flex align-items-center justify-content-center gap-2">
+      <i class="pi pi-link"></i>
+      <h3 class="font-semibold">Link - Secret Message</h3>
+    </div>
+  </ng-template>
+
+  <input pInputText class="w-full" value="{{ link }}" />
+  <button
+    pButton
+    pRipple
+    label="Open"
+    icon="pi pi-link"
+    class="mt-3"
+    (click)="openLink(link)"
+  ></button>
+</p-dialog>

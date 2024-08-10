@@ -1,0 +1,11 @@
+@if (!displaySharedMessage) {
+<app-modal-password-shared-message
+  [display]="displayModalPasswordSharedMessage"
+  (changeMessageVisibility)="changeMessageVisibility($event)"
+  (message)="getMessage($event)"
+></app-modal-password-shared-message>
+}@else {
+<app-card-shared-message
+  [message]="messageInfo.message"
+></app-card-shared-message>
+}

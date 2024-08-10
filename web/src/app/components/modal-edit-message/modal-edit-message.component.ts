@@ -1,12 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -104,7 +96,7 @@ export class ModalEditMessageComponent implements OnInit {
           detail: 'Message updated successfully',
         });
 
-        this.messageUpdated.emit(message);
+        this.messageUpdated.emit(response.data);
         this.messageEditForm.reset();
         this.display = false;
         this.submitted = false;

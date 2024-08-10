@@ -80,7 +80,7 @@ export class ModalRegisterMessageComponent {
           detail: 'Message registered successfully',
         });
 
-        this.changeMessageInfo.emit(message);
+        this.changeMessageInfo.emit(response.data);
 
         this.messageForm.reset();
         this.submitted = false;

@@ -36,4 +36,17 @@ export class MessageService {
       message
     );
   }
+
+  deleteMessage(): Observable<{ data: string }> {
+    return this.http.delete<{ data: string }>(
+      `${environment.apiBaseUrl}/api/messages/delete`
+    );
+  }
+
+  getSharedMessage(message: Message): Observable<{ data: Message }> {
+    return this.http.post<{ data: Message }>(
+      `${environment.apiBaseUrl}/api/messages/shared/${message.user_id}/${message.message_id}`,
+      message
+    );
+  }
 }
