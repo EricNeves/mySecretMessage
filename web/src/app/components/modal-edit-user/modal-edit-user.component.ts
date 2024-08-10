@@ -1,26 +1,33 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
-import { Router } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
 
-import { UserService } from '@services/user.service';
-import { StorageService } from '@services/storage.service';
-
 import { User } from '@models/User.model';
+import { UserService } from '@services/user.service';
 
 @Component({
-  selector: 'app-form-authentication',
+  selector: 'app-modal-edit-user',
   standalone: true,
   imports: [
+    DialogModule,
     InputTextModule,
     MessagesModule,
     PasswordModule,
@@ -29,22 +36,37 @@ import { User } from '@models/User.model';
     ReactiveFormsModule,
   ],
   providers: [MessageService],
-  templateUrl: './form-authentication.component.html',
-  styleUrl: './form-authentication.component.css',
+  templateUrl: './modal-edit-user.component.html',
+  styleUrl: './modal-edit-user.component.css',
 })
-export class FormAuthenticationComponent {
+export class ModalEditUserComponent implements OnInit, OnChanges {
+  @Output() updatedUser = new EventEmitter<User>();
+  @Input() display: boolean = false;
+  @Input() userInfo: Partial<User> = { name: '' };
+
   submitted: boolean = false;
-  loginForm!: FormGroup;
+
+  editForm!: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
     private messageService: MessageService,
-    private router: Router,
-    private userService: UserService,
-    private storageService: StorageService
-  ) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+    private fb: FormBuilder,
+    private userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userInfo']) {
+      this.initForm();
+    }
+  }
+
+  initForm(): void {
+    this.editForm = this.fb.group({
+      name: [this.userInfo.name, Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -52,8 +74,8 @@ export class FormAuthenticationComponent {
   onSubmit(): void {
     this.submitted = true;
 
-    if (this.loginForm.invalid) {
-      Object.keys(this.loginForm.controls).map((key) => {
+    if (this.editForm.invalid) {
+      Object.keys(this.editForm.controls).map((key) => {
         this.getErrorMessage(key);
       });
 
@@ -61,12 +83,20 @@ export class FormAuthenticationComponent {
       return;
     }
 
-    const user: User = this.loginForm.value;
+    const user: User = this.editForm.value;
 
-    this.userService.auth(user).subscribe({
+    this.userService.updateUser(user).subscribe({
       next: (response) => {
-        this.storageService.setItem('jwt', response.data);
-        this.router.navigate(['/panel']);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'User updated successfully',
+        });
+
+        this.updatedUser.emit(response.data);
+
+        this.submitted = false;
+        this.display = false;
       },
       error: (error) => {
         this.messageService.add({
@@ -82,19 +112,13 @@ export class FormAuthenticationComponent {
   }
 
   getErrorMessage(controlName: string): void {
-    const control = this.loginForm.get(controlName);
+    const control = this.editForm.get(controlName);
 
     if (control?.hasError('required')) {
       this.messageService.add({
         severity: 'warn',
         summary: 'Warning',
         detail: `The field ${controlName} is required`,
-      });
-    } else if (control?.hasError('email')) {
-      this.messageService.add({
-        severity: 'warn',
-        summary: 'Warning',
-        detail: `The field ${controlName} is not a valid email`,
       });
     }
   }

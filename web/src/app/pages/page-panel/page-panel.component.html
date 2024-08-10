@@ -1,1 +1,16 @@
-<app-navbar></app-navbar>
+<app-navbar
+  (changeDisplayInfoDev)="changeDisplayInfoDev($event)"
+  (changeDisplayEditUser)="changeDisplayEditUser($event)"
+></app-navbar>
+
+<app-card-owner-message
+  (userInfo)="getUserInfo($event)"
+  [user]="userInfo"
+></app-card-owner-message>
+
+<app-modal-info-dev [display]="displayInfoDev"></app-modal-info-dev>
+<app-modal-edit-user
+  [display]="displayEditUser"
+  [userInfo]="userInfo"
+  (updatedUser)="changeUserInfo($event)"
+></app-modal-edit-user>

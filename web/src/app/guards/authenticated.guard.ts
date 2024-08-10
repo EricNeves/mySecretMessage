@@ -10,7 +10,7 @@ export const authenticatedGuard: CanActivateFn = (route, state) => {
 
   userService.getUser().subscribe({
     error: (error: any) => {
-      if (error.status === 401) {
+      if (error.status === 0 || error.status === 401) {
         router.navigate(['/']);
       }
     },
