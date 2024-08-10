@@ -14,8 +14,6 @@ class DeleteMessageUseCase implements IDeleteMessageUseCase
 
     public function execute(DeleteMessageDto $deleteMessageDto): void
     {
-        $this->message->fetchSecureMessage($deleteMessageDto->user_id, $deleteMessageDto->secret_key);
-
         $this->messageRepository->remove($deleteMessageDto->user_id);
     }
 }

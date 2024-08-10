@@ -15,9 +15,7 @@ class DeleteMessageController
 
     public function handle(Request $request, Response $response)
     {
-        $fields = $request->validate(['secret_key' => 'required|string']);
-
-        $deleteMessageDto = new DeleteMessageDto($request->user()->id, $fields['secret_key']);
+        $deleteMessageDto = new DeleteMessageDto($request->user()->id);
 
         $this->deleteMessage->init()->execute($deleteMessageDto);
 
