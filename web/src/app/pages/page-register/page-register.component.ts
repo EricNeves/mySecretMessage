@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 
-import { FormRegisterComponent } from '../../components/form-register/form-register.component';
+import { FormRegisterComponent } from '@components/form-register/form-register.component';
 
 @Component({
   selector: 'app-page-register',

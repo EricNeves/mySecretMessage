@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 
-import { FormAuthenticationComponent } from '../../components/form-authentication/form-authentication.component';
+import { FormAuthenticationComponent } from '@components/form-authentication/form-authentication.component';
 
 @Component({
   selector: 'app-page-authentication',

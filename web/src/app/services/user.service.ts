@@ -31,4 +31,11 @@ export class UserService {
       `${environment.apiBaseUrl}/api/users/fetch`
     );
   }
+
+  updateUser(user: User): Observable<{ data: User }> {
+    return this.http.put<{ data: User }>(
+      `${environment.apiBaseUrl}/api/users/update`,
+      user
+    );
+  }
 }

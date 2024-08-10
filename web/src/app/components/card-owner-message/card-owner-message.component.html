@@ -1,0 +1,47 @@
+<div class="card w-full lg:w-7 m-auto mt-6">
+  <p-panel [toggleable]="true">
+    <ng-template pTemplate="header">
+      <div class="flex align-items-center gap-2">
+        <span class="font-bold">Hello, {{ user.name }} 👋</span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div
+        class="flex flex-wrap align-items-center justify-content-between gap-3"
+      >
+        <div class="flex align-items-center gap-2">
+          <p-button
+            icon="pi pi-bookmark"
+            severity="secondary"
+            rounded="true"
+            text="true"
+          />
+        </div>
+        <!-- <p-tag icon="pi pi-check" severity="success" value="Active" /> -->
+        <p-tag
+          icon="pi pi-exclamation-triangle"
+          severity="warning"
+          value="No Message"
+        />
+      </div>
+    </ng-template>
+    <ng-template pTemplate="icons">
+      <button
+        class="p-panel-header-icon p-link mr-2"
+        (click)="menu.toggle($event)"
+      >
+        <span class="pi pi-cog"></span>
+      </button>
+      <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
+    </ng-template>
+    <p class="m-0 text-center">
+      @if (!message.message) {
+      <span class="p-text-secondary block">
+        You don't have any message yet.
+      </span>
+      }
+    </p>
+  </p-panel>
+</div>
+
+<p-toast position="bottom-right"></p-toast>

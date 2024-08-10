@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
+import { StorageService } from '@services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +13,13 @@ import { MenubarModule } from 'primeng/menubar';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
+  @Output() changeDisplayInfoDev = new EventEmitter<boolean>();
+  @Output() changeDisplayEditUser = new EventEmitter<boolean>();
+
+  displayInfoDev: boolean = false;
   menu!: MenuItem[];
+
+  constructor(private storage: StorageService, private router: Router) {}
 
   ngOnInit(): void {
     this.menu = [
@@ -20,44 +28,34 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-home',
       },
       {
-        label: 'Features',
-        icon: 'pi pi-star',
-      },
-      {
-        label: 'Projects',
-        icon: 'pi pi-search',
+        label: 'Profile',
+        icon: 'pi pi-user',
         items: [
           {
-            label: 'Components',
-            icon: 'pi pi-bolt',
-          },
-          {
-            label: 'Blocks',
-            icon: 'pi pi-server',
-          },
-          {
-            label: 'UI Kit',
-            icon: 'pi pi-pencil',
-          },
-          {
-            label: 'Templates',
-            icon: 'pi pi-palette',
-            items: [
-              {
-                label: 'Apollo',
-                icon: 'pi pi-palette',
-              },
-              {
-                label: 'Ultima',
-                icon: 'pi pi-palette',
-              },
-            ],
+            label: 'Edit',
+            icon: 'pi pi-cog',
+            command: () => {
+              this.displayInfoDev = !this.displayInfoDev;
+              this.changeDisplayEditUser.emit(this.displayInfoDev);
+            },
           },
         ],
       },
       {
-        label: 'Contact',
-        icon: 'pi pi-envelope',
+        label: 'Dev',
+        icon: 'pi pi-code',
+        command: () => {
+          this.displayInfoDev = !this.displayInfoDev;
+          this.changeDisplayInfoDev.emit(this.displayInfoDev);
+        },
+      },
+      {
+        label: 'Logout',
+        icon: 'pi pi-power-off',
+        command: () => {
+          this.storage.clear();
+          this.router.navigate(['/']);
+        },
       },
     ];
   }

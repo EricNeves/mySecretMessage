@@ -10,9 +10,9 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 
 import { MessageService } from 'primeng/api';
-import { UserService } from '../../services/user.service';
+import { UserService } from '@services/user.service';
 
-import { User } from '../../models/User.model';
+import { User } from '@models/User.model';
 
 @Component({
   selector: 'app-form-register',
