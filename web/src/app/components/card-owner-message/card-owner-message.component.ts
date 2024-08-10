@@ -35,24 +35,15 @@ import { forkJoin } from 'rxjs';
 })
 export class CardOwnerMessageComponent implements OnInit {
   @Output() userInfo = new EventEmitter<Partial<User>>();
+  @Output() showModalRegisterMessage = new EventEmitter<boolean>();
+  @Output() showModalEditMessage = new EventEmitter<boolean>();
+  @Input() user: Partial<User> = {};
+  @Input() message: Partial<Message> = {};
 
-  items: {
-    label?: string;
-    icon?: string;
-    separator?: boolean;
-    command?: () => any;
-  }[] = [];
+  displayModalRegisterMessage: boolean = false;
+  displayModalEditMessage: boolean = false;
 
-  @Input() user: Partial<User> = {
-    name: '',
-  };
-
-  message: Partial<Message> = {
-    message_id: '',
-    message: '',
-    user_id: '',
-    ttl_seconds: 0,
-  };
+  items: any[] = [];
 
   constructor(
     private userService: UserService,
@@ -66,25 +57,40 @@ export class CardOwnerMessageComponent implements OnInit {
         label: 'Create Message',
         icon: 'pi pi-plus',
         command: () => {
-          alert('ok');
+          this.displayModalRegisterMessage = !this.displayModalRegisterMessage;
+          this.showModalRegisterMessage.emit(this.displayModalRegisterMessage);
         },
       },
       {
         label: 'Edit Message',
         icon: 'pi pi-pencil',
+        command: () => {
+          if (!this.message.message) {
+            this.messageToast.add({
+              severity: 'warn',
+              summary: 'Warning',
+              detail: "You don't have any messages to edit.",
+            });
+            return;
+          }
+
+          this.displayModalEditMessage = !this.displayModalEditMessage;
+
+          this.showModalEditMessage.emit(this.displayModalEditMessage);
+        },
       },
       {
         separator: true,
       },
       {
         label: 'Delete Message',
-        icon: 'pi pi-times',
+        icon: 'pi pi-trash',
       },
     ];
 
     forkJoin({
       user: this.userService.getUser(),
-      message: this.messageService.getMessages(),
+      message: this.messageService.getMessage(),
     }).subscribe({
       next: (response) => {
         this.user = response.user.data;
@@ -100,5 +106,9 @@ export class CardOwnerMessageComponent implements OnInit {
         });
       },
     });
+  }
+
+  openGitHub() {
+    window.open('https://github.com/EricNeves/mySecretMessage', '_blank');
   }
 }

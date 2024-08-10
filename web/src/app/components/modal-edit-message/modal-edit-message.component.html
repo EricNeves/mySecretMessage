@@ -7,12 +7,39 @@
 >
   <ng-template pTemplate="header">
     <div class="inline-flex align-items-center justify-content-center gap-2">
-      <i class="pi pi-file-plus"></i>
-      <h3 class="font-semibold">Secret Message</h3>
+      <i class="pi pi-file-edit"></i>
+      <h3 class="font-semibold">Edit Secret Message</h3>
     </div>
   </ng-template>
 
-  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+  @if (!enableEdit) {
+  <form [formGroup]="messageSecretKeyForm" (ngSubmit)="enableEditMessageForm()">
+    <label for="secret_key" class="block text-900 font-medium mb-2"
+      >Secret Key to Edit Message</label
+    >
+    <p-password
+      id="secret_key"
+      type="password"
+      placeholder="Secret Key"
+      pInputPassword
+      [feedback]="false"
+      [toggleMask]="true"
+      [style]="{ width: '100%', 'margin-bottom': '1.5rem' }"
+      [inputStyle]="{ width: '100%' }"
+      formControlName="secret_key"
+    />
+
+    <button
+      pButton
+      pRipple
+      label="Enter"
+      icon="pi pi-chevron-right"
+      class="w-full"
+      [loading]="submitted"
+    ></button>
+  </form>
+  } @else {
+  <form [formGroup]="messageEditForm" (ngSubmit)="onSubmit()">
     <div>
       <label for="message" class="block text-900 font-medium mb-2"
         >Message</label
@@ -38,7 +65,7 @@
       />
 
       <label for="secret_key" class="block text-900 font-medium mb-2"
-        >Secret Key</label
+        >Old Secret Key</label
       >
       <p-password
         id="secret_key"
@@ -49,19 +76,35 @@
         [toggleMask]="true"
         [style]="{ width: '100%', 'margin-bottom': '1.5rem' }"
         [inputStyle]="{ width: '100%' }"
-        formControlName="secret_key"
+        formControlName="old_secret_key"
+      />
+
+      <label for="secret_key" class="block text-900 font-medium mb-2"
+        >New Secret Key</label
+      >
+      <p-password
+        id="secret_key"
+        type="password"
+        placeholder="Secret Key"
+        pInputPassword
+        [feedback]="false"
+        [toggleMask]="true"
+        [style]="{ width: '100%', 'margin-bottom': '1.5rem' }"
+        [inputStyle]="{ width: '100%' }"
+        formControlName="new_secret_key"
       />
 
       <button
         pButton
         pRipple
-        label="Register"
-        icon="pi pi-file-plus"
+        label="Update"
+        icon="pi pi-file-edit"
         class="w-full"
         [loading]="submitted"
       ></button>
     </div>
   </form>
+  }
 </p-dialog>
 
 <p-toast position="bottom-right"></p-toast>

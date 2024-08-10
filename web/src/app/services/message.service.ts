@@ -10,9 +10,30 @@ import { environment } from '../../environments/environment.development';
 export class MessageService {
   constructor(private http: HttpClient) {}
 
-  getMessages(): Observable<{ data: Message }> {
+  register(message: Message): Observable<{ data: Message }> {
+    return this.http.post<{ data: Message }>(
+      `${environment.apiBaseUrl}/api/messages/register`,
+      message
+    );
+  }
+
+  getMessage(): Observable<{ data: Message }> {
     return this.http.get<{ data: Message }>(
       `${environment.apiBaseUrl}/api/messages/fetch`
+    );
+  }
+
+  getSecretMessage(message: Message): Observable<{ data: Message }> {
+    return this.http.post<{ data: Message }>(
+      `${environment.apiBaseUrl}/api/messages/secure/fetch`,
+      message
+    );
+  }
+
+  updateMessage(message: Message): Observable<{ data: Message }> {
+    return this.http.put<{ data: Message }>(
+      `${environment.apiBaseUrl}/api/messages/update`,
+      message
     );
   }
 }

@@ -5,12 +5,26 @@
 
 <app-card-owner-message
   (userInfo)="getUserInfo($event)"
+  (showModalRegisterMessage)="showModalRegisterMessage($event)"
+  (showModalEditMessage)="showModalEditMessage($event)"
   [user]="userInfo"
+  [message]="messageInfo"
 ></app-card-owner-message>
 
 <app-modal-info-dev [display]="displayInfoDev"></app-modal-info-dev>
+
 <app-modal-edit-user
   [display]="displayEditUser"
   [userInfo]="userInfo"
   (updatedUser)="changeUserInfo($event)"
 ></app-modal-edit-user>
+
+<app-modal-register-message
+  [display]="displayRegisterMessage"
+  (changeMessageInfo)="changeMessageInfo($event)"
+></app-modal-register-message>
+
+<app-modal-edit-message
+  [display]="displayEditMessage"
+  (messageUpdated)="messageUpdated($event)"
+></app-modal-edit-message>

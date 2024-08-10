@@ -11,18 +11,22 @@
       >
         <div class="flex align-items-center gap-2">
           <p-button
-            icon="pi pi-bookmark"
+            icon="pi pi-github"
             severity="secondary"
             rounded="true"
             text="true"
+            (onClick)="openGitHub()"
           />
         </div>
-        <!-- <p-tag icon="pi pi-check" severity="success" value="Active" /> -->
-        <p-tag
-          icon="pi pi-exclamation-triangle"
-          severity="warning"
-          value="No Message"
-        />
+        @if (message.message) {
+          <p-tag icon="pi pi-shield" severity="success" value="Active" />
+        } @else {
+          <p-tag
+            icon="pi pi-exclamation-triangle"
+            severity="warning"
+            value="No Message"
+          />
+        }
       </div>
     </ng-template>
     <ng-template pTemplate="icons">
@@ -35,7 +39,27 @@
       <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
     </ng-template>
     <p class="m-0 text-center">
-      @if (!message.message) {
+      @if (message.message) {
+      <span class="p-text-secondary block">
+        You have a message.
+      </span>
+
+      <div class="flex justify-content-center gap-2 mt-3">
+        <p-inplace [closable]="true">
+          <ng-template pTemplate="display">
+            <div class="inline-flex align-items-center">
+              <span class="pi pi-eye" style="vertical-align: middle"></span>
+              <span class="ml-2">View</span>
+          </div>
+          </ng-template>
+          <ng-template pTemplate="content">
+              <span>
+                {{ message.message }}
+              </span>
+          </ng-template>
+      </p-inplace>
+      </div>
+      } @else {
       <span class="p-text-secondary block">
         You don't have any message yet.
       </span>
