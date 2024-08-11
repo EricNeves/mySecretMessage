@@ -2,9 +2,10 @@
 
 namespace App\Adapters\Out\Services;
 
+use App\Domain\Services\UuidGenerator;
 use Ramsey\Uuid\Uuid;
 
-class UuidImplementation
+class UuidImplementation implements UuidGenerator
 {
     public function generate(): string
     {

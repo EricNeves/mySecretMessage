@@ -2,11 +2,11 @@
 
 namespace App\Application\Services;
 
-use App\Adapters\Out\Services\UuidImplementation;
+use App\Domain\Services\UuidGenerator;
 
 class Uuid
 {
-    public function __construct(private UuidImplementation $uuid)
+    public function __construct(private UuidGenerator $uuid)
     {
     }
 
