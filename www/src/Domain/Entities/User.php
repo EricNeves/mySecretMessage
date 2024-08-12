@@ -2,17 +2,19 @@
 
 namespace App\Domain\Entities;
 
-class User
+use JsonSerializable;
+
+class User implements JsonSerializable
 {
     public function __construct(
         public ?string $id,
         public string $name,
         public ?string $email,
-        public string $password,
+        public ?string $password,
     ) {
     }
 
-    public function toArray(): array
+    public function jsonSerialize(): array
     {
         return get_object_vars($this);
     }

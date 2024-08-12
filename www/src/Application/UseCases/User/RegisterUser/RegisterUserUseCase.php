@@ -14,7 +14,7 @@ class RegisterUserUseCase implements IRegisterUserUseCase
     {
     }
 
-    public function execute(RegisterUserDto $registerUserDto): array
+    public function execute(RegisterUserDto $registerUserDto): User
     {
         $passwordHashed = $this->passwordHasher->hash($registerUserDto->password);
 
@@ -28,6 +28,6 @@ class RegisterUserUseCase implements IRegisterUserUseCase
 
         unset($user->password);
 
-        return $user->toArray();
+        return $user;
     }
 }

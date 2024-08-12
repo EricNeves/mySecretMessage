@@ -8,7 +8,7 @@ interface MessageRepositoryPort
 {
     public function save(Message $message): void;
     public function exists(string $id): bool;
-    public function fetchMessageByID(string $id): array;
+    public function fetchMessageByID(string $id): ?Message;
     public function update(Message $message): void;
     public function remove(string $id): void;
 }

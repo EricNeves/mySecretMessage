@@ -2,7 +2,9 @@
 
 namespace App\Domain\Entities;
 
-class Message
+use JsonSerializable;
+
+class Message implements JsonSerializable
 {
     public function __construct(
         public string $message_id,
@@ -13,7 +15,7 @@ class Message
     ) {
     }
 
-    public function toArray(): array
+    public function jsonSerialize(): array
     {
         return get_object_vars($this);
     }
