@@ -14,14 +14,14 @@ class UpdateMessageUseCase implements IUpdateMessageUseCase
     {
     }
 
-    public function execute(UpdateMessageDto $updateMessageDto): array
+    public function execute(UpdateMessageDto $updateMessageDto): Message
     {
         $messageFromCache = $this->message->fetchSecureMessage($updateMessageDto->user_id, $updateMessageDto->secret_key);
 
         $passwordHash = $this->passwordHasher->hash($updateMessageDto->new_secret_key);
 
         $message = new Message(
-            $messageFromCache['message_id'],
+            $messageFromCache->message_id,
             $updateMessageDto->message,
             $passwordHash,
             $updateMessageDto->user_id,
@@ -32,6 +32,6 @@ class UpdateMessageUseCase implements IUpdateMessageUseCase
 
         unset($message->secret_key);
 
-        return $message->toArray();
+        return $message;
     }
 }

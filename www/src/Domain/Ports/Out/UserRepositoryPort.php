@@ -7,7 +7,7 @@ use App\Domain\Entities\User;
 interface UserRepositoryPort
 {
     public function save(User $user): bool;
-    public function findByEmail(string $email): bool | array;
-    public function findById(string $id): bool | array;
+    public function findByEmail(string $email): ?User;
+    public function findById(string $id): ?User;
     public function update(User $user): bool;
 }

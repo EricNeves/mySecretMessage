@@ -27,7 +27,7 @@ class UserPostgresDAO
         return $this->pdo->lastInsertId() > 0;
     }
 
-    public function findByEmail(string $email): bool | array
+    public function findByEmail(string $email): ?User
     {
         $stmt = $this->pdo->prepare("
             SELECT * FROM hx_users WHERE email = ?
@@ -35,10 +35,16 @@ class UserPostgresDAO
 
         $stmt->execute([$email]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        return new User($result['id'], $result['name'], $result['email'], $result['password']);
     }
 
-    public function findById(int $id): bool | array
+    public function findById(int $id): ?User
     {
         $stmt = $this->pdo->prepare("
             SELECT id, name, email FROM hx_users WHERE id = ?
@@ -46,7 +52,13 @@ class UserPostgresDAO
 
         $stmt->execute([$id]);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            return null;
+        }
+
+        return new User($result["id"], $result["name"], $result["email"], null);
     }
 
     public function update(User $user): bool

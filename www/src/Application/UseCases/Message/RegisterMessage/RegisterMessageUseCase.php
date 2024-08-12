@@ -18,10 +18,10 @@ class RegisterMessageUseCase implements IRegisterMessageUseCase
     ) {
     }
 
-    public function execute(RegisterMessageDto $registerMessageDto): array
+    public function execute(RegisterMessageDto $registerMessageDto): Message
     {
-        $uuid      = $this->uuid->generateUuid();
         $secretKey = $this->passwordHasher->hash($registerMessageDto->secret_key);
+        $uuid      = $this->uuid->generateUuid();
 
         $message = new Message($uuid, $registerMessageDto->message, $secretKey, $registerMessageDto->user_id, $registerMessageDto->ttl_seconds);
 
@@ -35,6 +35,6 @@ class RegisterMessageUseCase implements IRegisterMessageUseCase
 
         unset($message->secret_key);
 
-        return $message->toArray();
+        return $message;
     }
 }

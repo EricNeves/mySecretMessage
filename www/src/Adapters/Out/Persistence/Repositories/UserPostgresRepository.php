@@ -17,12 +17,12 @@ class UserPostgresRepository implements UserRepositoryPort
         return $this->user->save($user);
     }
 
-    public function findByEmail(string $email): bool | array
+    public function findByEmail(string $email): ?User
     {
         return $this->user->findByEmail($email);
     }
 
-    public function findById(string $id): array | bool
+    public function findById(string $id): ?User
     {
         return $this->user->findById($id);
     }

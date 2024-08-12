@@ -14,7 +14,7 @@ class UpdateUserUseCase implements IUpdateUserUseCase
     {
     }
 
-    public function execute(UpdateUserDto $updateUserDto): array
+    public function execute(UpdateUserDto $updateUserDto): User
     {
         $passwordHash = $this->passwordHasher->hash($updateUserDto->password);
 
@@ -26,8 +26,10 @@ class UpdateUserUseCase implements IUpdateUserUseCase
             throw new Exception("Sorry, we couldn't update your user.");
         }
 
-        $getUser = $this->userRepository->findById($updateUserDto->id);
+        $userFromDB = $this->userRepository->findById($updateUserDto->id);
 
-        return $getUser;
+        unset($userFromDB->password);
+
+        return $userFromDB;
     }
 }

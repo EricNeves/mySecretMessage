@@ -29,15 +29,25 @@ class MessageRedisDAO
         return $this->redis->exists($key);
     }
 
-    public function get(string $key): array
+    public function get(string $key): ?Message
     {
         $data = $this->redis->get($key);
 
         if (is_null($data)) {
-            return [];
+            return null;
         }
 
-        return json_decode($data, true);
+        $data = json_decode($data, true);
+
+        $message = new Message(
+            $data['message_id'],
+            $data['message'],
+            $data['secret_key'],
+            $data['user_id'],
+            $data['ttl_seconds']
+        );
+
+        return $message;
     }
 
     public function put(Message $message): void

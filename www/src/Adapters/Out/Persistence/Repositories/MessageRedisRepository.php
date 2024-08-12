@@ -22,7 +22,7 @@ class MessageRedisRepository implements MessageRepositoryPort
         return $this->message->has($id);
     }
 
-    public function fetchMessageByID(string $id): array
+    public function fetchMessageByID(string $id): ?Message
     {
         return $this->message->get($id);
     }

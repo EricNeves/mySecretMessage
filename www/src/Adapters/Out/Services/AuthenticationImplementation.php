@@ -21,11 +21,11 @@ class AuthenticationImplementation implements AuthenticationPort
     {
         $user = $this->userRepository->findByEmail($email);
 
-        if (!$user || !$this->passwordHasher->verify($password, $user['password'])) {
+        if (!$user || !$this->passwordHasher->verify($password, $user->password)) {
             throw new Exception("Sorry, email/password is incorrect", 401);
         }
 
-        unset($user['password']);
+        unset($user->password);
 
         return $this->jwt->generate($user);
     }
