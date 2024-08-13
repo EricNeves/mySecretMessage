@@ -14,7 +14,7 @@
 </p>
 
 <video width="600" align="center" controls>
-  <source src="resources/github/record.webm" type="video/webm">
+  <source src="resources/github/record.mp4" type="video/webm">
   Seu navegador não suporta a tag de vídeo.
 </video>
 
@@ -31,9 +31,17 @@ My Secret Message é um projeto web desenvolvido com PHP e Angular, trazendo com
 Essa modelo arquitetônico tem como principal recurso a utilização de Portas e Adaptadores, mas afinal, o que isso significa ?
 
 > [!NOTE] Exemplo
+> 
 > Maria comprou um cartão microSD para usar em sua câmera fotográfica, mas ao tentar inseri-lo, percebeu que sua câmera suporta apenas cartões SD de tamanho padrão. Para resolver o problema, Maria foi até uma loja de informática e adquiriu um adaptador de microSD para SD, permitindo que o cartão funcionasse perfeitamente em sua câmera.
 >
+> 
 
 Esse exemplo ilustra perfeitamente o conceito de Ports and Adapters na arquitetura de software. No contexto do sistema, as 'portas' representam interfaces ou pontos de entrada e saída definidos, enquanto os 'adaptadores' são responsáveis por conectar diferentes componentes do sistema, permitindo que trabalhem juntos, mesmo que usem formatos ou tecnologias diferentes. 
 
-No âmbito da aplicação, posso ter dentro das regras de negócio um cadastro de usuário que utiliza uma interface UserRepositoryPort (ports/out) e como adpatador posso implementar o recurso UserPostgresRepository (adapters/out),  
+No âmbito da aplicação, posso ter dentro das regras de negócio um cadastro de usuário que utiliza uma interface UserRepositoryPort (ports/out) e como adpatador posso implementar o recurso UserPostgresRepository (adapters/out), bem como posso implementar diferentes tipos de banco de dados, até mesmo frameworks, permitindo uma flexibilidade no software.
+
+> [!NOTE] Citação - Livro Arquitetura Limpa
+> 
+> O software deve ser tão agnóstico em sua forma quanto prática.
+>
+> 
