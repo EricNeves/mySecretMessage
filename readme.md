@@ -9,13 +9,13 @@
 <p align="center">
 </p>
 
-https://github.com/user-attachments/assets/6ded96a2-e43b-4f4c-ad6b-65f422fcaabc
-
 <p align="center">
   Projeto web desenvolvido com <strong>PHP</strong> e <strong>Angular</strong>, implementando melhorias na estrutura da aplicação em <strong>PHP</strong> através do uso de um dos modelos da <strong>Arquitetura Limpa</strong>, conhecido como <strong>Ports and Adapters</strong> ou <strong>Arquitetura Hexagonal</strong>.
 </p>
 
 <p align="center">Data de criação: Aug 4, 2024</p>
+
+https://github.com/user-attachments/assets/7884329d-ccad-4ae3-b954-28686556a9ba
 
 #### Intro 📃
 
