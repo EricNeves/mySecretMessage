@@ -94,7 +94,7 @@ Abaixo está a lista de **tecnologias** e **recursos** utilizados neste projeto,
 # project dir
 $ cd mySecretMessage
 
-# install web dependecies
+# install web dependencies
 $ cd web && pnpm install
 
 # install www dependencies
