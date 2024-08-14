@@ -42,3 +42,103 @@ Na estrutura da aplicação, as regras de negócio podem incluir um sistema de c
 > - **Livro Arquitetura Limpa**: "Portanto, as arquiteturas devem ser tão agnósticas em sua forma quanto práticas."
 > - **Livro Arquitetura Limpa**: "A dificuldade em realizar uma mudança deve ser proporcional apenas ao escopo da mudança e não à forma da mudança."
 > - **Livro Arquitetura Limpa**: "A arquitetura representa decisões significativas de design que moldam um sistema, onde a significância é medida pelo custo de mudança."
+>
+
+#### Features 🔭
+
+Abaixo está a lista de **tecnologias** e **recursos** utilizados neste projeto, juntamente com a implementação da **infraestrutura** da API. Importante destacar que a API foi desenvolvida sem o uso de **frameworks**, utilizando exclusivamente **PHP**.
+
+- API
+  - PHP:8.2
+    - Hexagonal Architecture
+    - Routes
+    - Request/Response
+    - Controllers
+    - Middlewares
+    - JWT
+    - Libraries
+        - phpunit/phpunit:10.5
+        - vlucas/phpdotenv:5.6
+        - predis/predis:2.2
+        - ramsey/uuid:4.7
+  - PostgreSQL:15.4
+  - Redis:latest
+- Web
+  - Angular:17
+    - Routes
+    - Guards
+    - Interceptors
+    - Services
+    - Events
+  - Libraries
+    - typescript:5.4
+    - primeflex:3.3
+    - primeicons:7
+    - primeng:17.8
+- DevOps
+  - Docker
+  - Docker Compose
+
+#### How to use ? 💡
+
+> [!NOTE]
+>
+> Para a execução bem sucedida da aplicação, é importante seguir os passos abaixo.
+>
+
+```sh
+
+# project dir
+$ cd mySecretMessage
+
+# install web dependecies
+$ cd web && pnpm install
+
+# install www dependencies
+$ cd www && composer install && cp .env.exemple .env
+
+# Run docker
+$ cd ./mySecretMessage && docker compose -f "docker-compose.yml" up -d --build
+
+```
+
+#### Tests 🔋
+
+```sh
+
+# unit tests
+$ cd www && composer test:unit
+
+# integration tests
+$ cd www && composer test:integration
+
+```
+
+#### Author 🦆
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://www.instagram.com/ericneves_dev/">
+        <img src="https://avatars.githubusercontent.com/u/32256029" width="100px;" alt=""/>
+        <br />
+        <sub>
+          <b>Eric Neves</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://www.instagram.com/ericneves_dev/">
+        <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" width="100%">
+      </a> 
+      <br />
+      <a href="https://linkedin.com/in/ericnevesrr"> 
+        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" width="100%">
+      </a>
+    </td>
+  </tr>
+</table>
+
+#### License 📋
