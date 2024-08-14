@@ -7,6 +7,9 @@
 </h4>
 
 <p align="center">
+  <img src="https://img.shields.io/github/last-commit/EricNeves/mySecretMessage?style=flat-square&logo=github&logoColor=white&color=blue&labelColor=%23102C57">
+  <img src="https://img.shields.io/github/languages/top/ericneves/mySecretMessage?style=flat-square&logo=php&logoColor=%23f3f3f3&label=%20PHP&color=%23379777&labelColor=%23333">
+  <img src="https://img.shields.io/github/license/ericneves/mySecretMessage?style=flat-square&logo=git&logoColor=%23F4CE14&labelColor=%230d1117&color=%23F4CE14">
 </p>
 
 <p align="center">
@@ -83,7 +86,7 @@ Abaixo está a lista de **tecnologias** e **recursos** utilizados neste projeto,
 
 > [!NOTE]
 >
-> Para a execução bem sucedida da aplicação, é importante seguir os passos abaixo.
+> Para garantir a execução bem-sucedida da aplicação, é essencial seguir os passos abaixo.
 >
 
 ```sh
@@ -97,7 +100,7 @@ $ cd web && pnpm install
 # install www dependencies
 $ cd www && composer install && cp .env.exemple .env
 
-# Run docker
+# run docker
 $ cd ./mySecretMessage && docker compose -f "docker-compose.yml" up -d --build
 
 ```
@@ -142,3 +145,5 @@ $ cd www && composer test:integration
 </table>
 
 #### License 📋
+
+<img src="https://img.shields.io/github/license/ericneves/mySecretMessage?style=flat-square&logo=git&logoColor=%23F4CE14&labelColor=%230d1117&color=%23F4CE14">
