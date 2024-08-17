@@ -9,7 +9,7 @@
 <p align="center">
   <img src="https://img.shields.io/github/last-commit/EricNeves/mySecretMessage?style=flat-square&logo=github&logoColor=white&color=blue&labelColor=%23102C57">
   <img src="https://img.shields.io/github/languages/top/ericneves/mySecretMessage?style=flat-square&logo=php&logoColor=%23f3f3f3&label=%20PHP&color=%23379777&labelColor=%23333">
-  <img src="https://img.shields.io/github/license/ericneves/mySecretMessage?style=flat-square&logo=git&logoColor=%23F4CE14&labelColor=%230d1117&color=%23F4CE14">
+  <img src="https://img.shields.io/github/license/ericneves/mySecretMessage?style=flat-square&logo=git&labelColor=405D72&color=667BC6">
 </p>
 
 <p align="center">
@@ -146,4 +146,4 @@ $ cd www && composer test:integration
 
 #### License 📋
 
-<img src="https://img.shields.io/github/license/ericneves/mySecretMessage?style=flat-square&logo=git&logoColor=%23F4CE14&labelColor=%230d1117&color=%23F4CE14">
+<img src="https://img.shields.io/github/license/ericneves/mySecretMessage?style=flat-square&logo=git&labelColor=405D72&color=667BC6">
