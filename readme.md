@@ -53,12 +53,12 @@ Abaixo está a lista de **tecnologias** e **recursos** utilizados neste projeto,
 
 - API
   - PHP:8.2
-    - Hexagonal Architecture
-    - Routes
-    - Request/Response
-    - Controllers
-    - Middlewares
-    - JWT
+    - Ports and Adapters Architecture
+    - routes
+    - request/response
+    - controllers
+    - middlewares
+    - jwt
     - Libraries
         - phpunit/phpunit:10.5
         - vlucas/phpdotenv:5.6
@@ -68,11 +68,11 @@ Abaixo está a lista de **tecnologias** e **recursos** utilizados neste projeto,
   - Redis:latest
 - Web
   - Angular:17
-    - Routes
-    - Guards
-    - Interceptors
-    - Services
-    - Events
+    - routes
+    - guards
+    - interceptors
+    - services
+    - events
   - Libraries
     - typescript:5.4
     - primeflex:3.3
