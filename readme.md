@@ -53,34 +53,34 @@ Abaixo está a lista de **tecnologias** e **recursos** utilizados neste projeto,
 
 - API
   - PHP:8.2
-    - Ports and Adapters Architecture
+    - ports and adapters architecture
     - routes
     - request/response
     - controllers
     - middlewares
     - jwt
-    - Libraries
+    - libraries
         - phpunit/phpunit:10.5
         - vlucas/phpdotenv:5.6
         - predis/predis:2.2
         - ramsey/uuid:4.7
-  - PostgreSQL:15.4
-  - Redis:latest
+  - postgreSQL:15.4
+  - redis:latest
 - Web
-  - Angular:17
+  - angular:17
     - routes
     - guards
     - interceptors
     - services
     - events
-  - Libraries
+  - libraries
     - typescript:5.4
     - primeflex:3.3
     - primeicons:7
     - primeng:17.8
-- DevOps
-  - Docker
-  - Docker Compose
+- devOps
+  - docker
+  - docker Compose
 
 #### How to use ? 💡
 
