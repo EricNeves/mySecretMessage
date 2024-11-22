@@ -98,7 +98,7 @@ $ cd mySecretMessage
 $ cd web && pnpm install
 
 # install www dependencies
-$ cd www && composer install && cp .env.exemple .env
+$ cd www && composer install && cp .env.example .env
 
 # run docker
 $ cd ./mySecretMessage && docker compose -f "docker-compose.yml" up -d --build
